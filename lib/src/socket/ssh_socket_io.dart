@@ -3,13 +3,14 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dartssh2/src/socket/ssh_socket.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 Future<SSHSocket> connectNativeSocket(
   String host,
   int port, {
   Duration? timeout,
 }) async {
-  final socket = await Socket.connect(host, port, timeout: timeout);
+  final socket = await WebSocketChannel.connect(host, port, timeout: timeout);
   return _SSHNativeSocket._(socket);
 }
 
